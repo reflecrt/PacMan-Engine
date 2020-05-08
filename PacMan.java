@@ -30,6 +30,7 @@ public class PacMan extends JFrame implements Runnable
 
   private int selectedTile = -1;
   private int selectedTileButton = -1;
+  private int selectedColor = -1;
 
 	public PacMan()
 	{
@@ -55,13 +56,27 @@ public class PacMan extends JFrame implements Runnable
 		tiles = new Tiles(new File("tiles.txt"), colors);
 
 		//Loading GUI.
-		buttons = new GUIbutton[tiles.size()];
+		buttons = new GUIbutton[tiles.size() + colors.size()];
 
-		for(int i = 0; i < buttons.length; i++)
+		for(int i = 0; i < tiles.size(); i++)
 		{
 			Rectangle tileRectangle = new Rectangle(2, i * (16 * 3 + 5), 16 * 3, 16 * 3);
 			buttons[i] = new TileEditorButton(this, i, tileRectangle, colors.getColor(14));
 		}
+    int x = 0;
+    int y = 2;
+    for(int i = tiles.size(); i < buttons.length; i++)
+    {
+      if(x * (16 + 5) + 100 > 1280)
+      {
+        x = 0;
+        y += 16 +5;
+      }
+
+      Rectangle tileRectangle = new Rectangle(x * (16 + 5) + 100, y, 16, 16);
+      buttons[i] = new ColorButton(this, (i - tiles.size()), tileRectangle, colors.getColor(14));
+      x++;
+    }
 
 		gui = new GUI(null, buttons, 3, 3);
 
@@ -251,6 +266,11 @@ public class PacMan extends JFrame implements Runnable
     return selectedTileButton;
    }
 
+   public int getSelectedColor()
+   {
+    return selectedColor;
+   }
+
    public void setSelectedTile(int selectedTile)
    {
     this.selectedTile = selectedTile;
@@ -259,6 +279,11 @@ public class PacMan extends JFrame implements Runnable
    public void setSelectedTileButton(int selectedTileButton)
    {
     this.selectedTileButton = selectedTileButton;
+   }
+
+   public void setSelectedColor(int selectedColor)
+   {
+    this.selectedColor = selectedColor;
    }
 
    public KeyboardListener getKeyListener()
