@@ -1,0 +1,24 @@
+//Tiles
+//name of the tile
+//name of the part,x,y,width,height,color
+//MAKE SURE TO END THE FILE WITH A SPACE ON A NEW LINE.
+Random
+rect,10,100,50,50,yellow
+oval,0,10,50,50,skyblue
+ 
+Circle
+oval,0,0,100,100,red
+ 
+Oval
+oval,10,100,100,100,turquoise
+ 
+Triangle
+Triangle,0,0,100,100,grey
+ 
+Random
+rect,10,100,50,50,yellow
+oval,0,10,50,50,skyblue
+oval,0,0,100,100,red
+oval,10,100,100,100,turquoise
+Triangle,0,0,100,100,grey
+ 
